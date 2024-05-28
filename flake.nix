@@ -14,6 +14,11 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [ pkgs.vim
+          pkgs.go_1_22
+          pkgs.yq
+          pkgs.jq
+          pkgs.google-cloud-sdk
+    
         ];
 
       # Auto upgrade nix package and the daemon service.
