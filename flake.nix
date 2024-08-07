@@ -12,12 +12,13 @@
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =
+    
+
+    environment.systemPackages =
         [ pkgs.vim
           pkgs.go_1_22
           pkgs.yq
           pkgs.jq
-          pkgs.google-cloud-sdk
           pkgs.oh-my-zsh
           pkgs.zsh
           pkgs.zsh-completions
@@ -28,10 +29,26 @@
           pkgs.k9s      
           pkgs.go-containerregistry
           pkgs.kustomize
-	  pkgs.lima 
-
+	  pkgs.lima
+          pkgs.skopeo
+          pkgs.goreleaser
 ];
 
+
+
+
+    nix.distributedBuilds = true;
+    nix.buildMachines = [{
+     hostName = "lima-default";
+     sshUser = "harsh";
+     protocol = "ssh-ng";
+     sshKey = "/Users/harsh/.lima/_config/user";
+     systems = [ "x86_64-linux" ];
+     maxJobs = 2;
+     speedFactor = 2;
+     supportedFeatures = [ "kvm" ];
+     mandatoryFeatures = [ ];
+}];
 
 
 
