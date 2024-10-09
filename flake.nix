@@ -49,17 +49,18 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
 
-     nix.distributedBuilds = true;
-      nix.buildMachines = [{
-    hostName = "127.0.0.1@60022";
-    sshUser = "harshthakur";
-    sshKey = "/Users/harshthakur/.lima/_config/user";
-    systems = [ "x86_64-linux" ];
-    maxJobs = 2;
-    speedFactor = 2;
-    supportedFeatures = [ "kvm" ];
-    mandatoryFeatures = [ ];
-}];
+  nix.distributedBuilds = true;
+    nix.buildMachines = [{
+     hostName = "lima-default";
+     sshUser = "harshthakur";
+     protocol = "ssh-ng";
+     sshKey = "/Users/harshthakur/.lima/_config/user";
+     systems = [ "x86_64-linux" ];
+     maxJobs = 2;
+     speedFactor = 2;
+     supportedFeatures = [ "kvm" ];
+     mandatoryFeatures = [ ];
+    }];
 
 
 
