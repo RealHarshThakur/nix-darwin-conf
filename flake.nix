@@ -34,6 +34,8 @@
           pkgs.goreleaser
           pkgs.turso-cli
           pkgs.buf
+          pkgs.grpcui
+          pkgs.grpcurl
           (pkgs.google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin])
 
 ];
