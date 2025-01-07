@@ -17,8 +17,9 @@
           pkgs.go_1_22
           pkgs.yq
           pkgs.jq
-          pkgs.google-cloud-sdk
-    
+          (pkgs.google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin])
+          pkgs.kubectl
+ 
         ];
 
       # Auto upgrade nix package and the daemon service.
