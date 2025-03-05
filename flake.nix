@@ -12,17 +12,35 @@
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [ pkgs.vim
+      environment.systemPackages = [ pkgs.vim
           pkgs.go_1_24
           pkgs.yq
           pkgs.jq
+          pkgs.oh-my-zsh
+          pkgs.zsh
+          pkgs.zsh-completions
+          pkgs.zsh-powerlevel10k
+          pkgs.gnupg
           pkgs.kubectl
-	  pkgs.buf        
+          pkgs.krew
+          pkgs.k9s      
+          pkgs.go-containerregistry
+          pkgs.kustomize
+          pkgs.skopeo
+          pkgs.goreleaser
+          pkgs.buf
+          pkgs.grpcui
+          pkgs.grpcurl
+          pkgs.azure-cli
+          pkgs.libpq
+          pkgs.gum
+          pkgs.buf
+          pkgs.aws-iam-authenticator
+          (pkgs.google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin]) 
+        ];
+      
 
-];
-
-      # nix.package = pkgs.nix;
+# nix.package = pkgs.nix;
        nix.enable = false;
       #nix.settings.trusted-users = ["harshthakur"];
       nix.settings.extra-trusted-users = ["@admin"];
