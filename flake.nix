@@ -14,7 +14,7 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [ pkgs.vim
-          pkgs.go_1_22
+          pkgs.go_1_24
           pkgs.yq
           pkgs.jq
           (pkgs.google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin])
@@ -22,10 +22,8 @@
  
         ];
 
-      # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
-
+       nix.enable = false;
       #nix.settings.trusted-users = ["harshthakur"];
       nix.settings.extra-trusted-users = ["@admin"];
      # nix.trusted-users = [ "@admin" ];
@@ -41,7 +39,8 @@
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
         
-      security.pam.enableSudoTouchIdAuth = true;
+      security.pam.services.sudo_local.touchIdAuth = true;
+
 
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
@@ -49,20 +48,6 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
-
-  nix.distributedBuilds = true;
-    nix.buildMachines = [{
-     hostName = "lima-default";
-     sshUser = "harshthakur";
-     protocol = "ssh-ng";
-     sshKey = "/Users/harshthakur/.lima/_config/user";
-     systems = [ "x86_64-linux" ];
-     maxJobs = 2;
-     speedFactor = 2;
-     supportedFeatures = [ "kvm" ];
-     mandatoryFeatures = [ ];
-    }];
-
 
 
     };
