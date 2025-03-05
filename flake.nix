@@ -17,10 +17,10 @@
           pkgs.go_1_24
           pkgs.yq
           pkgs.jq
-          (pkgs.google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin])
           pkgs.kubectl
- 
-        ];
+	  pkgs.buf        
+
+];
 
       # nix.package = pkgs.nix;
        nix.enable = false;
